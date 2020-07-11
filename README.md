@@ -4,7 +4,18 @@ A multi-server deployment tool, inspired by Capistrano, the awesome deployment t
 
 This library is tailored to web applications and can be used to deploy your applications to one or multiple servers in a consistent way and easily configureable way. It supports all web frameworks available for Crystal. The configuration is YAML based and is inspired by Ansible.
 
-## :electric_plug: Installation
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Init](#init)
+  - [Check](#check)
+  - [Deploy](#deploy)
+  - [Rollback](#rollback)
+- [Development](#development)
+- [Contributing](#contributing)
+- [Contributors](#contributors)
+
+## Installation
 
 1. Add the dependency to your `shard.yml`:
 ```yaml
@@ -24,7 +35,7 @@ targets:
 
 4. Run `shards build can` to build candilano
 
-## :wrench: Usage
+## Usage
 
 ### Init
 Run init script in the projects root path:
@@ -56,7 +67,7 @@ With the `rollback` command you will execute a deployment.
 ./bin/can rollback production
 ```
 
-## :hammer: Development
+## Development
 
 This library is under development. It is already used in production by myself. I still want to implement the following features:
 
@@ -65,7 +76,7 @@ This library is under development. It is already used in production by myself. I
 - Dry-run support
 - Ability to write your own 'programs'
 
-## :muscle: Contributing
+## Contributing
 
 1. Fork it (<https://github.com/gem-shards/candilano/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
