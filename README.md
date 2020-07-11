@@ -2,6 +2,8 @@
 
 A multi-server deployment tool, inspired by Capistrano, the awesome deployment tool for Ruby. Although it a bit similar, it's not exactly the same.
 
+This library is tailored to web applications and can be used to deploy your applications to one or multiple servers in a consistent way and easily configureable way. It supports all web frameworks available for Crystal. The configuration is YAML based and is inspired by Ansible.
+
 ## :electric_plug: Installation
 
 1. Add the dependency to your `shard.yml`:
@@ -34,7 +36,7 @@ Run init script in the projects root path:
 It will create a deploy directory with two yaml files for sandbox and production use. You can modify the files to your liking.
 
 ### Check
-Run the `check` command to check if you can connect to your servers and see if it has all the permissions to start a deploy.
+Run the `check` command to check if you can connect to your servers and see if it has all the permissions are set to start a deploy.
 
 ```bash
 ./bin/can check production
@@ -47,15 +49,20 @@ With the `deploy` command you will execute a deployment.
 ./bin/can deploy production
 ```
 
+### Rollback
+With the `rollback` command you will execute a deployment.
+
+```bash
+./bin/can rollback production
+```
+
 ## :hammer: Development
 
-This library is under development. It is already used in production for myself. I still want to implement the following features:
+This library is under development. It is already used in production by myself. I still want to implement the following features:
 
-- Rollback is priority
 - Show more debug info if command fails
 - Ansible like variables and checks
 - Dry-run support
-- Programmable config files
 - Ability to write your own 'programs'
 
 ## :muscle: Contributing
