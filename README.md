@@ -51,11 +51,12 @@ With the `deploy` command you will execute a deployment.
 
 This library is under development. It is already used in production for myself. I still want to implement the following features:
 
-- Before and after callbacks for task commands
+- Rollback is priority
 - Show more debug info if command fails
+- Ansible like variables and checks
 - Dry-run support
 - Programmable config files
-- Ability to write your own scripts
+- Ability to write your own 'programs'
 
 ## Contributing
 

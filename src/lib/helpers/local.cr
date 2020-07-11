@@ -10,7 +10,7 @@ module Candilano
       elapsed_time = Time.measure do
         Process.run("sh", {"-c", "#{command}"}, output: output, shell: true)
       end
-      print "   ✔ localhost".colorize(:green).to_s + " #{elapsed_time.total_seconds.round(3).to_s}s\n"
+      print "   ✔ localhost".colorize(:green).to_s + " #{elapsed_time.total_seconds.round(3)}s\n"
 
       output.close
       output.to_s
