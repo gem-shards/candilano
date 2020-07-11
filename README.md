@@ -1,8 +1,8 @@
-# Candilano
+# :candy: Candilano
 
 A multi-server deployment tool, inspired by Capistrano, the awesome deployment tool for Ruby. Although it a bit similar, it's not exactly the same.
 
-## Installation
+## :electric_plug: Installation
 
 1. Add the dependency to your `shard.yml`:
 ```yaml
@@ -22,7 +22,7 @@ targets:
 
 4. Run `shards build can` to build candilano
 
-## Usage
+## :wrench: Usage
 
 ### Init
 Run init script in the projects root path:
@@ -47,7 +47,7 @@ With the `deploy` command you will execute a deployment.
 ./bin/can deploy production
 ```
 
-## Development
+## :hammer: Development
 
 This library is under development. It is already used in production for myself. I still want to implement the following features:
 
@@ -58,7 +58,7 @@ This library is under development. It is already used in production for myself. 
 - Programmable config files
 - Ability to write your own 'programs'
 
-## Contributing
+## :muscle: Contributing
 
 1. Fork it (<https://github.com/gem-shards/candilano/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
