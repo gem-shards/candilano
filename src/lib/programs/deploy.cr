@@ -28,7 +28,7 @@ module Candilano
         build_release
         remove_older_releases
         symlink_to_current
-        restart_passenger
+        restart_app
       end
 
       def create_git_wrapper
@@ -110,7 +110,7 @@ module Candilano
         task_group.execute(@ssh)
       end
 
-      def restart_passenger
+      def restart_app
         task_group = Task::Group.new("deploy:restart_passenger", "restart passenger", @config)
         task_group.tasks << Task.new("passenger-config restart-app #{@config["deploy_to"]}/current/public --ignore-app-not-running", false)
         task_group.execute(@ssh)
