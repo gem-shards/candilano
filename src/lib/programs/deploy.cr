@@ -12,8 +12,7 @@ module Candilano
       end
 
       def generate_release_time
-        time = Time.utc
-        time.year.to_s + time.month.to_s + time.day.to_s + time.hour.to_s + time.minute.to_s + time.second.to_s
+        Time::Format.new("%Y%m%d%H%M%S").format(Time.utc)
       end
 
       def run
@@ -100,7 +99,7 @@ module Candilano
 
       def remove_older_releases
         task_group = Task::Group.new("deploy:remove_older_releases", "remove older releases", @config)
-        task_group.tasks << Task.new("cd #{@config["deploy_to"]}/releases && ls -A1t #{@config["deploy_to"]}/releases | tail -n +#{@config["keep_releases"]} | xargs rm -r", false)
+        task_group.tasks << Task.new("cd #{@config["deploy_to"]}/releases && ls -A1t #{@config["deploy_to"]}/releases | tail -n +#{@config["keep_releases"]} | xargs -r rm -r", false)
         task_group.execute(@ssh)
       end
 
