@@ -1,8 +1,10 @@
 # :candy: Candilano
 
-A multi-server deployment tool, inspired by Capistrano, the awesome deployment tool for Ruby. Although it a bit similar, it's not exactly the same.
+A multi-server deployment tool, inspired by Capistrano, the deployment tool for Ruby. Although I've tried to mimick some features it is not exactly the same.
 
-This library is tailored to web applications and can be used to deploy your applications to one or multiple servers in a consistent way and easily configureable way. It supports all web frameworks available for Crystal. The configuration is YAML based and is inspired by Ansible.
+This library is tailored to web applications and can be used to deploy your app to one or multiple servers in a consistent and  configureable way. It supports all web frameworks available for Crystal. The configuration is YAML based and is inspired by Ansible.
+
+Be aware this is still under development and can break stuff.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -11,6 +13,7 @@ This library is tailored to web applications and can be used to deploy your appl
   - [Check](#check)
   - [Deploy](#deploy)
   - [Rollback](#rollback)
+- [Configuration](#configuration)
 - [Development](#development)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
@@ -67,10 +70,58 @@ With the `rollback` command you will execute a deployment.
 ./bin/can rollback production
 ```
 
+## Configuration
+If you run the `init` command it will generate the following configuration:
+
+```yaml
+---
+  app_name: 'your-app-name'
+  repo_url: 'git@github:repo.git'
+  deploy_to: '/location/to/deploy'
+  keep_releases: 5
+  do_migrate: false
+
+  # linked_files:
+  #   - 'config/settings.yml'
+
+  # linked_directories:
+  #  - 'log'
+  #  - 'tmp'
+
+  ssh:
+    user: user
+    password: password
+    port: 22
+    key: '~/.ssh/id_rsa'
+    forward_agent: true
+
+  servers:
+    - host: 127.0.0.1
+      roles:
+        - web
+        - db
+  # - host: 127.0.0.1
+  #   roles:
+  #     - web
+
+
+  # hooks:
+  #   before:
+  #     - command: 'free'
+  #       task_group: 'rollback:get_previous_version'
+  #       target: 'remote'
+  #   after:
+  #     - command: 'free'
+  #       task_group: 'rollback:get_previous_version'
+  #       target: 'local'
+
+```
+
 ## Development
 
 This library is under development. It is already used in production by myself. I still want to implement the following features:
 
+- Database migrations
 - Show more debug info if command fails
 - Ansible like variables and checks
 - Dry-run support
