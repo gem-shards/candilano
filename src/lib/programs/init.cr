@@ -6,7 +6,7 @@ module Candilano
   repo_url: 'git@github:repo.git'
   deploy_to: '/location/to/deploy'
   keep_releases: 5
-  do_migrate: false
+  restart_command: 'service your-app-name restart'
 
   # linked_files:
   #   - 'config/settings.yml'

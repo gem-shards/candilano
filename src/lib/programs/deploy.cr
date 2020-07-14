@@ -111,8 +111,8 @@ module Candilano
       end
 
       def restart_app
-        task_group = Task::Group.new("deploy:restart_passenger", "restart passenger", @config)
-        task_group.tasks << Task.new("passenger-config restart-app #{@config["deploy_to"]}/current/public --ignore-app-not-running", false)
+        task_group = Task::Group.new("deploy:restart_app", "restart application", @config)
+        task_group.tasks << Task.new(@config["restart_command"].to_s, false)
         task_group.execute(@ssh)
       end
     end
