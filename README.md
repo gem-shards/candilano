@@ -1,3 +1,5 @@
+[![GitHub release](https://img.shields.io/github/release/gem-shards/candilano.svg)](https://github.com/gem-shards/candilano/releases)
+
 # :candy: Candilano
 
 A **multi-server deployment tool**, inspired by [Capistrano](https://capistranorb.com/), the deployment tool for Ruby.
