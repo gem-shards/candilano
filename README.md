@@ -25,7 +25,7 @@ Be aware this is still under development and can break things.
 1. Add the dependency to your `shard.yml`:
 ```yaml
 dependencies:
-  candilona:
+  candilano:
     github: gem-shards/candilano
 ```
 2. Run `shards install`
