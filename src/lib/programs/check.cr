@@ -31,6 +31,8 @@ module Candilano
       end
 
       def check_directories
+        return unless @config["linked_directories"]?
+
         task_group = Task::Group.new("check:directories", "check/create symlinked directories", @config)
 
         dirs = @config["linked_directories"].as_a.map do |directory|
@@ -42,6 +44,8 @@ module Candilano
       end
 
       def check_files
+        return unless @config["linked_files"]?
+
         task_group = Task::Group.new("check:files", "check presence of symlinked files", @config)
         @config["linked_files"].as_a.each do |file|
           task_group.tasks << Task.new("stat #{@config["deploy_to"]}/shared/#{file}", false, false)

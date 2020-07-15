@@ -21,8 +21,8 @@ module Candilano
         create_default_folders
         clone_repo
         create_release
-        symlink_directories
-        symlink_files
+        symlink_directories if @config["linked_directories"]?
+        symlink_files if @config["linked_files"]?
         install_shards
         build_release
         remove_older_releases
@@ -55,7 +55,7 @@ module Candilano
         if @ssh.file_exists?("#{@config["deploy_to"]}/repo/HEAD")
           task_group.tasks << Task.new("cd #{@config["deploy_to"]}/repo && ( export GIT_ASKPASS=\"/bin/echo\" GIT_SSH=\"/tmp/git-ssh-wrapper.sh\" ; /usr/bin/env git remote set-url origin #{@config["repo_url"]})", false)
         else
-          task_group.tasks << Task.new("git clone --mirror #{@config["repo_url"]} #{@config["deploy_to"]}/repo")
+          task_group.tasks << Task.new("git clone -q --mirror #{@config["repo_url"]} #{@config["deploy_to"]}/repo")
         end
         task_group.tasks << Task.new("cd #{@config["deploy_to"]}/repo && ( export GIT_ASKPASS=\"/bin/echo\" GIT_SSH=\"/tmp/git-ssh-wrapper.sh\" ; /usr/bin/env git remote update --prune )", false)
         task_group.execute(@ssh)
@@ -64,8 +64,8 @@ module Candilano
       def create_release
         task_group = Task::Group.new("deploy:create_release", "create and populate release", @config)
         task_group.tasks << Task.new("mkdir #{@config["deploy_to"]}/releases/#{release_time}")
-        task_group.tasks << Task.new("cd #{@config["deploy_to"]}/repo && ( export GIT_ASKPASS=\"/bin/echo\" GIT_SSH=\"/tmp/git-ssh-wrapper.sh\" ; /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C #{@config["deploy_to"]}/releases/#{release_time} )", false)
-        task_group.tasks << Task.new("cd #{@config["deploy_to"]}/repo && ( export GIT_ASKPASS=\"/bin/echo\" GIT_SSH=\"/tmp/git-ssh-wrapper.sh\" ; /usr/bin/env git rev-list --max-count=1 master )", false)
+        task_group.tasks << Task.new("cd #{@config["deploy_to"]}/repo && ( export GIT_ASKPASS=\"/bin/echo\" GIT_SSH=\"/tmp/git-ssh-wrapper.sh\" ; /usr/bin/env git archive #{@config["branch"]} | /usr/bin/env tar -x -f - -C #{@config["deploy_to"]}/releases/#{release_time} )", false)
+        task_group.tasks << Task.new("cd #{@config["deploy_to"]}/repo && ( export GIT_ASKPASS=\"/bin/echo\" GIT_SSH=\"/tmp/git-ssh-wrapper.sh\" ; /usr/bin/env git rev-list --max-count=1 #{@config["branch"]} )", false)
         task_group.execute(@ssh)
       end
 
@@ -105,7 +105,7 @@ module Candilano
 
       def symlink_to_current
         task_group = Task::Group.new("deploy:symlink_to_current", "symlink release as current", @config)
-        task_group.tasks << Task.new("rm #{@config["deploy_to"]}/current && ln -sf #{@config["deploy_to"]}/releases/#{release_time} #{@config["deploy_to"]}/current")
+        task_group.tasks << Task.new("rm -f #{@config["deploy_to"]}/current && ln -sf #{@config["deploy_to"]}/releases/#{release_time} #{@config["deploy_to"]}/current")
         task_group.execute(@ssh)
       end
 

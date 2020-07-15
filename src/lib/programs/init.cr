@@ -5,8 +5,15 @@ module Candilano
   app_name: 'your-app-name'
   repo_url: 'git@github:repo.git'
   deploy_to: '/location/to/deploy'
+  branch: 'master'
   keep_releases: 5
   restart_command: 'service your-app-name restart'
+
+  ssh:
+    user: user
+    password: password
+    port: 22
+    key: '~/.ssh/id_rsa'
 
   # linked_files:
   #   - 'config/settings.yml'
@@ -14,13 +21,6 @@ module Candilano
   # linked_directories:
   #  - 'log'
   #  - 'tmp'
-
-  ssh:
-    user: user
-    password: password
-    port: 22
-    key: '~/.ssh/id_rsa'
-    forward_agent: true
 
   servers:
     - host: 127.0.0.1
@@ -30,7 +30,6 @@ module Candilano
   # - host: 127.0.0.1
   #   roles:
   #     - web
-
 
   # hooks:
   #   before:
