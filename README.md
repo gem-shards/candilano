@@ -1,10 +1,10 @@
 # :candy: Candilano
 
-A multi-server deployment tool, inspired by Capistrano, the deployment tool for Ruby. Although I've tried to mimick some features it is not exactly the same.
+A **multi-server deployment tool**, inspired by [Capistrano][https://capistranorb.com/], the deployment tool for Ruby.
 
-This library is tailored to web applications and can be used to deploy your app to one or multiple servers in a consistent and  configureable way. It supports all web frameworks available for Crystal. The configuration is YAML based and is inspired by Ansible.
+This library is tailored to web applications and can be used to deploy your app to one or multiple servers in a consistent and  configureable way. It supports all web frameworks available for Crystal. The configuration is YAML based and is inspired by [Ansible](https://github.com/ansible/ansible).
 
-Be aware this is still under development and can break stuff.
+Be aware this is still under development and can break things.
 
 ## Table of Contents
 - [Installation](#installation)
