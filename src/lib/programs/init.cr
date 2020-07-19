@@ -42,13 +42,15 @@ module Candilano
   #       target: 'local'
       >
 
-      def initialize
-      end
-
       def run
         Dir.mkdir("deploy") unless Dir.exists?("deploy")
-        File.write("deploy/sandbox.yml", TEMPLATE) unless File.exists?("deploy/sandbox.yml")
-        File.write("deploy/production.yml", TEMPLATE) unless File.exists?("deploy/production.yml")
+
+        create_config("deploy/sandbox.yml")
+        create_config("deploy/production.yml")
+      end
+
+      def create_config(path)
+        File.write(path, TEMPLATE) unless File.exists?(path)
       end
     end
   end
