@@ -12,17 +12,22 @@ module Candilano
       @key = config["key"].to_s
     end
 
-    def execute(command : String, user_env = true, dry = false)
+    def execute(command : String, user_env = true, dry_run = false, role = nil)
       channel = Channel(Hash(String, String)).new
+      executed_size = 0
 
       servers.as_a.each do |server|
-        spawn do
-          channel.send(run_command(server["host"], command, user_env, dry))
+        if role
+          next unless server["roles"].as_a.includes?(role)
         end
+        spawn do
+          channel.send(run_command(server["host"], command, user_env, dry_run))
+        end
+        executed_size += 1
       end
 
       results = Array(Hash(String, String)).new
-      until results.size == servers.as_a.size
+      until results.size == executed_size
         results << channel.receive
       end
 
@@ -34,12 +39,12 @@ module Candilano
       results
     end
 
-    def run_command(host, command, user_env, dry = false)
+    def run_command(host, command, user_env, dry_run = false)
       comm = prepare_command(command, user_env)
       output = IO::Memory.new
       error = IO::Memory.new
       elapsed_time = Time.measure do
-        unless dry
+        unless dry_run
           Process.run("sh", {"-c", "#{build_command(host)} #{comm}"}, output: output, shell: true, error: error)
         end
       end

@@ -3,7 +3,7 @@ module Candilano
     def initialize
     end
 
-    def execute(command : String, dry = false)
+    def execute(command : String, dry_run = false)
       output = IO::Memory.new
       return if dry
 
