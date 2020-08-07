@@ -9,6 +9,10 @@ module Candilano
   keep_releases: 5
   restart_command: 'service your-app-name restart'
 
+  # Optionally, set a migrate command for database migrations
+  # It will execute on the 'db' role only when it's present.
+  # migrate_command: 'amber db migrate'
+
   ssh:
     user: user
     password: password
@@ -36,6 +40,7 @@ module Candilano
   #     - command: 'free'
   #       task_group: 'rollback:get_previous_version'
   #       target: 'remote'
+  #       on_role: 'db'
   #   after:
   #     - command: 'free'
   #       task_group: 'rollback:get_previous_version'

@@ -40,7 +40,7 @@ module Candilano
 
         @config["hooks"][action].as_a.each do |hook|
           if hook["task_group"].to_s == @identifier
-            task = Task.new(hook["command"].to_s, false, false)
+            task = Task.new(hook["command"].to_s, user_env: false, dry_run: false, on_role: hook["on_role"]?)
             if hook["target"].to_s == "remote"
               task.execute(ssh)
             else

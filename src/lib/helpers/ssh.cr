@@ -12,13 +12,13 @@ module Candilano
       @key = config["key"].to_s
     end
 
-    def execute(command : String, user_env = true, dry_run = false, role = nil)
+    def execute(command : String, user_env = true, dry_run = false, on_role = nil)
       channel = Channel(Hash(String, String)).new
       executed_size = 0
 
       servers.as_a.each do |server|
-        if role
-          next unless server["roles"].as_a.includes?(role)
+        if on_role
+          next unless server["roles"].as_a.includes?(on_role)
         end
         spawn do
           channel.send(run_command(server["host"], command, user_env, dry_run))
