@@ -25,6 +25,7 @@ module Candilano
         symlink_files if @config["linked_files"]?
         install_shards
         build_release
+        run_migration if @config["migrate_command"]?
         remove_older_releases
         symlink_to_current
         restart_app
@@ -94,6 +95,12 @@ module Candilano
       def build_release
         task_group = Task::Group.new("deploy:build_release", "build release", @config)
         task_group.tasks << Task.new("cd #{@config["deploy_to"]}/releases/#{release_time} && shards build --production", false)
+        task_group.execute(@ssh)
+      end
+
+      def run_migration
+        task_group = Task::Group.new("deploy:migrate", "runs database migrations on 'db' role only", @config)
+        task_group.tasks << Task.new(@config["migrate_command"].to_s, false, on_role: "db")
         task_group.execute(@ssh)
       end
 
