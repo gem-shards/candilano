@@ -15,6 +15,7 @@ Be aware this is still under development and can break things.
   - [Check](#check)
   - [Deploy](#deploy)
   - [Rollback](#rollback)
+  - [Restart](#restart)
 - [Configuration](#configuration)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -70,6 +71,13 @@ With the `rollback` command you will execute a deployment.
 
 ```bash
 ./bin/can rollback production
+```
+
+### Restart
+With the `restart` command you can restart your running application.
+
+```bash
+./bin/can restart production
 ```
 
 ## Configuration
