@@ -28,6 +28,8 @@ module Candilano
                   Programs::Deploy.new(load_config)
                 when "rollback"
                   Programs::Rollback.new(load_config)
+                when "restart"
+                  Programs::Restart.new(load_config)
                 when "init"
                   Programs::Init.new
                 else

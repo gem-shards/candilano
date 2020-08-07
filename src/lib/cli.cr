@@ -40,6 +40,14 @@ module Candilano
           puts setup.execute
         end
       end
+      sub "restart" do
+        desc "restart application"
+        usage "can restart"
+        run do |_opts, args|
+          setup = Candilano::Setup.new("restart", args.all_args.first)
+          puts setup.execute
+        end
+      end
     end
   end
 end
