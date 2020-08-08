@@ -135,7 +135,6 @@ If you run the `init` command it will generate the following configuration:
 
 This library is under development. It is already used in production by myself. I still want to implement the following features:
 
-- Database migrations
 - Show more debug info if command fails
 - Ansible like variables and checks
 - Dry-run support
