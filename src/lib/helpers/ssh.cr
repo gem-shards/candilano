@@ -10,6 +10,7 @@ module Candilano
       @servers = servers
       @port = config["port"].to_s.to_i32
       @key = config["key"].to_s
+      @forward_agent = config["forward_agent"].to_s == "true" ? true : false
     end
 
     def execute(command : String, user_env = true, dry_run = false, on_role = nil)
@@ -73,6 +74,7 @@ module Candilano
       str = "ssh"
       str += " #{@user}@#{host}"
       str += " -o ConnectTimeout=3"
+      str += " -A" if @forward_agent
       str += " -i #{@key}" if @key
       str += " -p #{@port}" if @port
       str

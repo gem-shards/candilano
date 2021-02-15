@@ -18,6 +18,7 @@ module Candilano
     password: password
     port: 22
     key: '~/.ssh/id_rsa'
+    forward_agent: true
 
   # linked_files:
   #   - 'config/settings.yml'

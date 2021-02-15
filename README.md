@@ -101,6 +101,7 @@ If you run the `init` command it will generate the following configuration:
     password: password
     port: 22
     key: '~/.ssh/id_rsa'
+    forward_agent: true
 
   # linked_files:
   #   - 'config/settings.yml'
