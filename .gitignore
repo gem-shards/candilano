@@ -6,6 +6,7 @@
 *.dwarf
 .editorconfig
 /deploy/
+.DS_Store
 
 # Libraries don't need dependency lock
 # Dependencies will be locked in application that uses them
