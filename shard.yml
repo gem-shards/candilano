@@ -1,10 +1,10 @@
 name: candilano
-version: 0.13.0
+version: 0.14.0
 
 authors:
   - VvanGemert <vincent@floorplanner.com>
 
-crystal: 1.0.0
+crystal: 1.2.0
 
 license: MIT
 
@@ -15,4 +15,4 @@ targets:
 dependencies:
   clim:
     github: at-grandpa/clim
-    version: 0.17.0
+    version: 0.17.1
