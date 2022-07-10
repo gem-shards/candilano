@@ -1,10 +1,10 @@
 name: candilano
-version: 0.14.0
+version: 0.14.1
 
 authors:
   - VvanGemert <vincent@floorplanner.com>
 
-crystal: 1.2.0
+crystal: 1.5.0
 
 license: MIT
 
