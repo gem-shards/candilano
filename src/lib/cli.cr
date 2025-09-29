@@ -33,7 +33,7 @@ module Candilano
         end
       end
       sub "init" do
-        desc "initialize and setup Cadilano"
+        desc "initialize and setup Candilano"
         usage "can init"
         run do |_opts, _args|
           setup = Candilano::Setup.new("init", "no_env")

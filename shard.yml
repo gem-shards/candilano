@@ -4,7 +4,7 @@ version: 0.14.2
 authors:
   - VvanGemert <vincent@gemshards.com>
 
-crystal: 1.15.1
+crystal: 1.17.1
 
 license: MIT
 
